@@ -1,0 +1,350 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "API 文档标题",
+        "description": "接口的详细描述",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/prompt/save": {
+            "put": {
+                "tags": [
+                    "prompt"
+                ],
+                "summary": "保存提示词",
+                "description": "保存提示词,如果已经存在会覆盖原来的",
+                "operationId": "SavePrompt_prompt_save_put",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SavePromptReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp_SavePromptResp_"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/prompt/find": {
+            "post": {
+                "tags": [
+                    "prompt"
+                ],
+                "summary": "查找提示词",
+                "description": "寻找提示词",
+                "operationId": "FindPrompt_prompt_find_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FindPromptReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp_FindPromptResp_"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/token/register": {
+            "post": {
+                "tags": [
+                    "token"
+                ],
+                "summary": "注册",
+                "description": "寻找提示词",
+                "operationId": "Register_token_register_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterReq"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp_RegisterResp_"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "FindPromptReq": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "title": "FindPromptReq"
+            },
+            "FindPromptResp": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "title": "Prompt"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "prompt"
+                ],
+                "title": "FindPromptResp"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "RegisterReq": {
+                "properties": {
+                    "owner": {
+                        "type": "string",
+                        "title": "Owner"
+                    },
+                    "token": {
+                        "type": "string",
+                        "title": "Token"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "owner",
+                    "token"
+                ],
+                "title": "RegisterReq"
+            },
+            "RegisterResp": {
+                "properties": {
+                    "token": {
+                        "type": "string",
+                        "title": "Token"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "token"
+                ],
+                "title": "RegisterResp"
+            },
+            "Resp_FindPromptResp_": {
+                "properties": {
+                    "msg": {
+                        "type": "string",
+                        "title": "Msg",
+                        "default": ""
+                    },
+                    "code": {
+                        "type": "integer",
+                        "title": "Code",
+                        "default": 0
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/FindPromptResp"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "data"
+                ],
+                "title": "Resp[FindPromptResp]"
+            },
+            "Resp_RegisterResp_": {
+                "properties": {
+                    "msg": {
+                        "type": "string",
+                        "title": "Msg",
+                        "default": ""
+                    },
+                    "code": {
+                        "type": "integer",
+                        "title": "Code",
+                        "default": 0
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/RegisterResp"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "data"
+                ],
+                "title": "Resp[RegisterResp]"
+            },
+            "Resp_SavePromptResp_": {
+                "properties": {
+                    "msg": {
+                        "type": "string",
+                        "title": "Msg",
+                        "default": ""
+                    },
+                    "code": {
+                        "type": "integer",
+                        "title": "Code",
+                        "default": 0
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/SavePromptResp"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "data"
+                ],
+                "title": "Resp[SavePromptResp]"
+            },
+            "SavePromptReq": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "title": "Prompt"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "prompt"
+                ],
+                "title": "SavePromptReq"
+            },
+            "SavePromptResp": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "title": "Prompt"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "prompt"
+                ],
+                "title": "SavePromptResp"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        }
+    }
+}
