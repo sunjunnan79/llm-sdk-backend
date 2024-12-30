@@ -2,4 +2,4 @@
 .venv
 __pycache__/
 cmd/config/config.yaml
-deploy/
+cmd/deploy/
