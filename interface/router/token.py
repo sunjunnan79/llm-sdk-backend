@@ -1,7 +1,7 @@
 from fastapi import Depends, APIRouter
 
-from api import request, response
-from api.response import RegisterResp, Resp
+from interface.api import RegisterResp, Resp
+from interface.api import response, request
 from service.token import TokenService
 
 tokenRouter = APIRouter()

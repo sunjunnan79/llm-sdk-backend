@@ -1,9 +1,9 @@
 import uvicorn
 
-from config import config
+from cmd.config import config
+from interface.router import app
 from pkg import jwt
 from repository.dao import model
-from router.handlers import app
 
 
 def init():

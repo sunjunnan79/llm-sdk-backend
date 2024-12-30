@@ -1,7 +1,7 @@
 from fastapi import Depends, Request, APIRouter
 
-from api import request, response
-from api.response import Resp, SavePromptResp, FindPromptResp
+from interface.api import Resp, SavePromptResp, FindPromptResp
+from interface.api import response, request
 from service.prompt import PromptService
 
 promptRouter = APIRouter()

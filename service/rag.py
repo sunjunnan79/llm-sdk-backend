@@ -1,4 +1,4 @@
-from api import request, response, error
+from interface.api import response, request, error
 from repository.dao import PromptDAO, Prompt
 
 

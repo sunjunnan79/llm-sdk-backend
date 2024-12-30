@@ -6,10 +6,10 @@ from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.cors import CORSMiddleware
 
-from api.error import CustomException, TOKEN_NOT_FOUND, TOKEN_BAD
+from interface.api import CustomException, TOKEN_NOT_FOUND, TOKEN_BAD
+from interface.router.prompt import promptRouter
+from interface.router.token import tokenRouter
 from pkg.jwt import getJWT
-from router.prompt import promptRouter
-from router.token import tokenRouter
 
 # 初始化app
 app = FastAPI(
