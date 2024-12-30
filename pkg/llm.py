@@ -1,5 +1,6 @@
 # 分割工具
 import re
+import uuid
 
 import tiktoken
 from langchain.llms import Ollama
@@ -68,3 +69,9 @@ def split_text_by_token_limit(prompt: str, max_tokens: int = 3500, model: str = 
         chunks.append("".join(current_chunk))
 
     return chunks
+
+
+def chatSession() -> str:
+    # 生成一个 UUID，作为会话密钥
+    session_key = uuid.uuid4().bytes
+    return str(session_key)

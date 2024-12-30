@@ -1,5 +1,5 @@
 from api import request, response, error
-from model.model import PromptDAO, Prompt
+from repository.dao import PromptDAO, Prompt
 
 
 class PromptService:

@@ -1,8 +1,8 @@
 import uvicorn
 
 from config import config
-from model import model
 from pkg import jwt
+from repository.dao import model
 from router.handlers import app
 
 
